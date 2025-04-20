@@ -9,17 +9,20 @@ rootProject.name = "jvm-monorepo"
 
 fun allProjectsUnder(dir: File): Array<String> {
 
-    val listFiles = dir.walkTopDown().map { it }
-    return if(listFiles.none()) arrayOf()
-    else {
-        listFiles.filter { it.isFile && it.name.equals("build.gradle.kts", ignoreCase = true) }
-            .map { it.parentFile.toRelativeString(rootDir).replace("/", ":") }.toList().toTypedArray()
-    }
+  val listFiles = dir.walkTopDown().map { it }
+  return if (listFiles.none()) arrayOf()
+  else {
+    listFiles
+      .filter { it.isFile && it.name.equals("build.gradle.kts", ignoreCase = true) }
+      .map { it.parentFile.toRelativeString(rootDir).replace("/", ":") }
+      .toList()
+      .toTypedArray()
+  }
 }
 
 include(
-    listOf(
-        *(allProjectsUnder(rootDir.resolve("packages/apps"))),
-        *(allProjectsUnder(rootDir.resolve("packages/libraries"))),
-    )
+  listOf(
+    *(allProjectsUnder(rootDir.resolve("packages/apps"))),
+    *(allProjectsUnder(rootDir.resolve("packages/libraries"))),
+  )
 )

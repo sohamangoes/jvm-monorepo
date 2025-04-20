@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 public class GreetingsConfig {
 
-    @Bean
-    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public GreetingsService greetingsService() {
-        return new GreetingsService();
-    }
+  @Bean
+  @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+  public GreetingsService greetingsService() {
+    return new GreetingsService();
+  }
 }

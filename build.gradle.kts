@@ -1,10 +1,6 @@
-plugins {
-  id("com.diffplug.spotless") version("6.25.0")
-}
+plugins { id("com.diffplug.spotless") version ("6.25.0") }
 
-repositories {
-  gradlePluginPortal()
-}
+repositories { gradlePluginPortal() }
 
 spotless {
   protobuf { buf() }

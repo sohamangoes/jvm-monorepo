@@ -10,16 +10,15 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 @AutoConfigureWebTestClient
 class ActuatorApiTest {
 
-    @Autowired
-    WebTestClient webTestClient;
+  @Autowired WebTestClient webTestClient;
 
-    @Test
-    void healthCheckShouldWork() {
-        webTestClient.get().uri("/actuator/health").exchange().expectStatus().isOk();
-    }
+  @Test
+  void healthCheckShouldWork() {
+    webTestClient.get().uri("/actuator/health").exchange().expectStatus().isOk();
+  }
 
-    @Test
-    void metricsShouldWork() {
-        webTestClient.get().uri("/actuator/metrics").exchange().expectStatus().isOk();
-    }
+  @Test
+  void metricsShouldWork() {
+    webTestClient.get().uri("/actuator/metrics").exchange().expectStatus().isOk();
+  }
 }

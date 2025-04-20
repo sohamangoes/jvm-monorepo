@@ -14,15 +14,15 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class GreetingsApi {
 
-    private final GreetingsService greetingsService;
+  private final GreetingsService greetingsService;
 
-    @GetMapping
-    public Mono<String> handleGreeting() {
-        return Mono.just(greetingsService.greet());
-    }
+  @GetMapping
+  public Mono<String> handleGreeting() {
+    return Mono.just(greetingsService.greet());
+  }
 
-    @GetMapping("{name}")
-    public Mono<String> handleGreeting(@PathVariable String name) {
-        return Mono.just(greetingsService.greet(name));
-    }
+  @GetMapping("{name}")
+  public Mono<String> handleGreeting(@PathVariable String name) {
+    return Mono.just(greetingsService.greet(name));
+  }
 }
