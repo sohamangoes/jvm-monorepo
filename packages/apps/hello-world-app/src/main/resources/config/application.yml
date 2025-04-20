@@ -1,0 +1,14 @@
+---
+spring:
+  application:
+    name: "hello-world-app"
+  devtools:
+    add-properties: false
+    livereload:
+      enabled: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "loggers"

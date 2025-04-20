@@ -1,0 +1,6 @@
+---
+spring:
+  devtools:
+    add-properties: true
+    livereload:
+      enabled: true
