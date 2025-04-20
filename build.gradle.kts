@@ -55,6 +55,24 @@ spotless {
 tasks.register<Copy>("setupGitHooks") {
   from(rootDir.resolve(".scripts/git-hooks"))
   into(rootDir.resolve(".git/hooks"))
+
+  outputs.upToDateWhen {
+    val hooksDir = rootDir.resolve(".git/hooks")
+    if (!hooksDir.exists() || hooksDir.listFiles()?.isEmpty() == true) {
+      return@upToDateWhen false
+    }
+
+    var scriptsDir = rootDir.resolve(".scripts/git-hooks")
+    val scripts = scriptsDir.listFiles() ?: return@upToDateWhen false
+    val hooks = hooksDir.listFiles() ?: return@upToDateWhen false
+
+    scripts.all { script ->
+      val correspondingHook = hooks.find { it.name == script.name }
+      correspondingHook != null && correspondingHook.lastModified() >= script.lastModified()
+    }
+  }
+
+  onlyIf { !state.upToDate }
   doFirst { println("🛠️ setting up git hooks..") }
   doLast { println("✅ git hooks setup successfully!") }
 }
