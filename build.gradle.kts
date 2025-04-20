@@ -51,3 +51,10 @@ spotless {
     prettier()
   }
 }
+
+tasks.register<Copy>("setupGitHooks") {
+  from(rootDir.resolve(".scripts/git-hooks"))
+  into(rootDir.resolve(".git/hooks"))
+  doFirst { println("🛠️ setting up git hooks..") }
+  doLast { println("✅ git hooks setup successfully!") }
+}

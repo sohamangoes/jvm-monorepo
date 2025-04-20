@@ -7,6 +7,10 @@
 
 rootProject.name = "jvm-monorepo"
 
+gradle.projectsEvaluated {
+  rootProject.tasks.named("setupGitHooks").get().run { actions.forEach { it.execute(this) } }
+}
+
 fun allProjectsUnder(dir: File): Array<String> {
 
   val listFiles = dir.walkTopDown().map { it }
